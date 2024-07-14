@@ -28,12 +28,16 @@ header {
     left: 5%;
     justify-content: flex-start;
     align-items: center;
+    margin-right: 10%;
 }
 
 .links li {
-    color: rgb(211, 211, 189);
     font-size: 1.75vw;
-    margin-right: 4.6%;
+    margin-right: 5%;
+}
+
+.links li a {
+    color: rgb(211, 211, 189);
 }
 
 .tech-blog-logo {
