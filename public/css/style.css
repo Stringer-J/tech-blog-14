@@ -11,3 +11,24 @@ body {
     position: absolute;
     top: 0;
 }
+
+.tech-blog-logo {
+    background-color: rgb(211, 211, 189);
+    width: 25%;
+    height: 40%;
+    position: relative;
+    top: 35%;
+    left: 5%;
+    border: 1px solid black;
+    border-radius: 10px;
+    box-shadow: 8px 8px 2px rgb(166, 166, 138);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tech-blog-logo h1 {
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+}
