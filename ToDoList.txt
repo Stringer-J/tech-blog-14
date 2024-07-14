@@ -1,0 +1,93 @@
+CREATE FOLDERS AND FILES (-folder --folder/folder etc ==file)
+    -config
+        ==connection.js
+    -controllers
+        -api
+            ==index.js
+    -db
+        ==schema.sql
+    -models
+    -public
+        --css
+        --js
+    -seeds
+        ==index.js
+    -views
+        --layouts
+            ==main.handlebars
+    ==.env
+    ==.gitignore (from github)
+    ==LICENSE (from github)
+    ==server.js
+
+RUN 'npm i ...' IN SAME FOLDER AS 'server.js' FOR THE FOLLOWING
+    -dotenv
+        = npm i dotenv
+    -express
+        = npm i express
+    -express-handlebars
+        = npm i express-handlebars
+    -handlebars
+        = npm i handlebars
+    -pg
+        = npm i pg
+    -sequelize
+        = npm i sequelize
+    -eslint
+        = npm i -D eslint
+    -nodemon
+        = npm i -D nodemon
+
+ADD TO 'package.json' ABOVE DEPENDENCIES
+    "scripts": {
+        "seeds": "node seeds/index.js"
+    },
+
+SETUP FOR 'connection.js'
+    const Sequelize = require('sequelize');
+    require('dotenv').config();
+
+    const sequelize = process.env.DB_URL
+        ? new Sequelize(process.env.DB_URL)
+        : new Sequelize(
+            process.env.DB_NAME,
+            process.env.DB_USER,
+            process.env.DB_PASSWORD,
+            {
+                host: 'localhost',
+                dialect: 'postgres',
+            }
+        );
+
+    module.exports = sequelize;
+
+SETUP FOR 'server.js'
+    const path = require('path');
+    const express = require('express');
+    const exphbs = require('express-handlebars');
+
+    const app = express();
+    const PORT = process.env.PORT || 3001;
+
+    const sequelize = require('./config/connection');
+
+    const hbs = exphbs.create({});
+
+    app.engine('handlebars', hbs.engine);
+    app.set('view engine', 'handlebars');
+
+    app.use(express.json());
+    app.use(express.urlencoded({ extended: false }));
+    app.use(express.static(path.join(__dirname, 'public')));
+
+    app.use(require('./controllers/'));
+
+    sequelize.sync({ force: false }).then(() => {
+        app.listen(PORT, () => console.log('Now listening'));
+    });
+
+SETUP FOR '.env'
+    DB_NAME=''  (whatever your database is called)
+    DB_USER='postgres'
+    DB_PASSWORD=''  (whatever your password is)
+

@@ -1,0 +1,74 @@
+= technical explanation, + simple explanation
+
+dotenv -------------------------------------------------
+= loads environment variables from a '.env' file into
+  'process.env'
++ helps protect sensitive info like your passwords, etc
+
+express ------------------------------------------------
+= web framework for node.js that provides a robust set
+  of features for web and mobile applications
++ lets you use routing (get, post, etc), middleware,
+  template engines like handlebars, easier ways to
+  handle errors, serve static files and works with a
+  bunch of different node modules and libraries
+
+path (express) -----------------------------------------
+= module in express that provides utilities for working
+  with file and directory paths
++ lets you make routes to serve static files (.css, etc),
+  and do other file-related things like normalizing
+  routes across different environments
+
+express-handlebars -------------------------------------
+= a view engine for express that allows you to render
+  dynamic HTML pages on the server side
++ this is just better HTML than original HTML because
+  you can keep code that appears on every page and only
+  change the exact things that need to be changed
+  between URLS
+
+handlebars ---------------------------------------------
+= a view engine for express that allows you to render
+  dynamic HTML pages on the server side
++ the difference is that normal handlebars is general
+  purpose but express-handlebars is for web apps that
+  are specifically built using express
+
+handlebars VS express-handlebars -----------------------
+WHY WOULD YOU CHOOSE ONE OVER THE OTHER OR USE BOTH?
+    From what I understand, you'd use handlebars when
+    most of the content is static and won't change,
+    then you'd use express-handlebars for the dynamic
+    content on the page like user specific stuff
+    (user name appearing on page, user comments etc.)
+
+pg -----------------------------------------------------
+= PostgreSQL client for node.js that allows applications
+  to connect to and interact with PostgreSQL databases
++ connects you to PostgreSQL databases and lets you
+  make queries, make transactions (multiple queries at
+  once), and makes it easier to work with async/await
+
+sequelize ----------------------------------------------
+= promise-based node.js ORM library for PostgreSQL (among
+  other things) that simplifies database interactions
+  by abstracting SQL queries into JavaScript methods,
+  providing a more intuitive way to manage database
+  relationships and perform CRUD operations
++ lets you make models that represent tables in your
+  database as JavaScript classes, makes it easier to
+  work with SQL statements pretty much
+
+eslint -------------------------------------------------
+= a static code analysis tool for identifying problematic
+  patterns found in JavaScript code.
++ lets you define and enforce best coding styles and best
+  practices across your project, promotes consistency
+
+nodemon ------------------------------------------------
+= utility tool for node.js applications that helps
+  developers automatically restart teh node.js application
+  when file changes in the directory are detected
++ restarts your server after you save so that you don't
+  have to do it over and over again
