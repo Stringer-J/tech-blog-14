@@ -40,6 +40,10 @@ header {
     color: rgb(211, 211, 189);
 }
 
+.links li a:hover {
+    color: aliceblue;
+}
+
 .tech-blog-logo {
     background-color: rgb(211, 211, 189);
     width: 25%;
