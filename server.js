@@ -26,6 +26,10 @@ app.get('/', async (req, res) => {
     res.render('layouts/main');
 });
 
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, './seeds', 'blog-seeds.json'));
+});
+
 sequelize.sync({ force: false }).then(() => {
     app.listen(PORT, () => console.log('Now listening'));
 });
