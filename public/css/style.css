@@ -4,12 +4,36 @@ body {
     background-color: rgb(211, 211, 189);
 }
 
+header {
+    position: relative;
+}
+
 .navbar {
     background-color: rgba(0, 0, 0, 0.82);
-    width: 100%;
-    height: 20%;
-    position: absolute;
+    width: 100vw;
+    height: 20vh;
+    position: relative;
     top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.links {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    height: 50%;
+    position: relative;
+    left: 5%;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.links li {
+    color: rgb(211, 211, 189);
+    font-size: 1.75vw;
+    margin-right: 4.6%;
 }
 
 .tech-blog-logo {
@@ -17,18 +41,18 @@ body {
     width: 25%;
     height: 40%;
     position: relative;
-    top: 35%;
+    bottom: 15%;
     left: 5%;
     border: 1px solid black;
     border-radius: 10px;
-    box-shadow: 8px 8px 2px rgb(166, 166, 138);
+    box-shadow: 6px 6px 2px rgb(166, 166, 138);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .tech-blog-logo h1 {
-    font-size: 50px;
+    font-size: 3vw;
     font-weight: bold;
     text-align: center;
 }
