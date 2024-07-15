@@ -4,5 +4,11 @@
         "title": "TEST BLOG",
         "posted": "Posted by Josh on 7/14/2024",
         "content": "This is just a test blog to see if I can get it to render... let's hope."
+    },
+    {
+        "id": 2,
+        "title": "TEST BLOG #2",
+        "posted": "Posted by Josh on 7/28/2024",
+        "content": "This is actually a super cool way to post things"
     }
 ]

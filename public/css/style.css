@@ -64,3 +64,8 @@ header {
     font-weight: bold;
     text-align: center;
 }
+
+.blog-container {
+    height: 500px;
+    width: 500px;
+}

@@ -16,5 +16,15 @@
                 <h1>The Tech Blog</h1>
             </div>
         </div> 
+        <div class="blog-container">
+            {{#each blogs}}
+                <div class="blog-post">
+                    <h2>{{title}}</h2>
+                    <hr>
+                    <p>{{posted}}</p>
+                    <p>{{content}}</p>
+                </div>
+            {{/each}}
+        </div>
     </body>
 </html>
