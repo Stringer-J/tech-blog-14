@@ -115,3 +115,8 @@ header {
     border-radius: 0px 0px 5px 5px;
     width: 90%;
 }
+
+.blog-post p {
+    margin-left: 2%;
+    margin-right: 2%;
+}
