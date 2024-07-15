@@ -2,6 +2,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: rgb(211, 211, 189);
+    min-height: 100vh;
 }
 
 header {
@@ -66,6 +67,17 @@ header {
 }
 
 .blog-container {
-    height: 500px;
-    width: 500px;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.blog-post {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
