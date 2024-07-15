@@ -74,10 +74,35 @@ header {
     flex-direction: column;
 }
 
+.blog-post-header {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    border-top: 2px solid black;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    margin-top: 1%;
+    width: 90%;
+    background-color: rgba(0, 0, 0, 0.82);
+    color: rgb(211, 211, 189);
+}
+
+.blog-post-header h2 {
+    margin-left: 2%;
+}
+
+.blog-post-header p {
+    margin-right: 2%;
+}
+
 .blog-post {
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    border: 2px solid black;
+    width: 90%;
 }

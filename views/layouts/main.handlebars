@@ -18,9 +18,11 @@
         </div> 
         <div class="blog-container">
             {{#each blogs}}
-                <div class="blog-post">
+                <div class="blog-post-header">
                     <h2>{{title}}</h2>
                     <p>{{posted}}</p>
+                </div>
+                <div class="blog-post">
                     <p>{{content}}</p>
                 </div>
             {{/each}}
