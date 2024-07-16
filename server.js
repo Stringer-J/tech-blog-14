@@ -8,11 +8,7 @@ const PORT = process.env.PORT || 3001;
 
 const sequelize = require('./config/connection');
 
-const hbs = exphbs.create({
-    layoutsDir: path.join(__dirname, 'views/layouts'),
-    defaultLayout: 'main',
-    extname: 'handlebars',
-});
+const hbs = exphbs.create({});
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
@@ -24,7 +20,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(require('./controllers/'));
 
 app.get('/', async (req, res) => {
-    res.render('layouts/main', {
+    res.render('home', {
         blogs: blogData
     });
 });

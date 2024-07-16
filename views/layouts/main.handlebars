@@ -5,7 +5,7 @@
         <link rel="stylesheet" href="/css/style.css" />
     </head>
 
-    <body>
+    <header>
         <div class="navbar">
             <ul class="links">
                 <li><a href="/">Home</a></li>
@@ -16,16 +16,9 @@
                 <h1>The Tech Blog</h1>
             </div>
         </div> 
-        <div class="blog-container">
-            {{#each blogs}}
-                <div class="blog-post-header">
-                    <h3>{{title}}</h3>
-                    <p>{{posted}}</p>
-                </div>
-                <div class="blog-post">
-                    <p>{{content}}</p>
-                </div>
-            {{/each}}
-        </div>
+    </header>
+
+    <body>
+        {{{body}}}
     </body>
 </html>
