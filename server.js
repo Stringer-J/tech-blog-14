@@ -1,6 +1,7 @@
 const path = require('path');
 const express = require('express');
 const exphbs = require('express-handlebars');
+const session = require('express-session');
 const blogData = require('./seeds/blog-seeds.json');
 
 const app = express();
@@ -18,6 +19,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(require('./controllers/'));
+
+app.use(session({
+    secret: 'plok',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false}
+}));
 
 app.get('/', async (req, res) => {
     res.render('home', {
