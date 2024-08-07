@@ -1,10 +1,10 @@
-#loginBoxBox {
+#signupBoxBox {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#loginBox {
+#signupBox {
     width: 15%;          /* Width of the square */
     height: 40%;         /* Height of the square */
     background-color: aliceblue; /* Background color */
@@ -19,12 +19,12 @@
     align-items: center;
   }
 
-  #loginBox h3 {
+  #signupBox h3 {
     position: absolute;
     top:1%;
   }
 
-  #loginBox h5 {
+  #signupBox h5 {
     position: absolute;
     bottom: 1%;
   }
