@@ -27,10 +27,21 @@ app.use(session({
     cookie: { secure: false}
 }));
 
+function isLoggedIn (req, res, next) {
+    if (req.session.user) {
+        return next();
+    }
+    res.redirect('/login');
+}
+
 app.get('/', async (req, res) => {
     res.render('home', {
         blogs: blogData
     });
+});
+
+app.get('/dashboard', isLoggedIn, (req, res) => {
+    res.render('dashboard');
 });
 
 sequelize.sync({ force: false }).then(() => {
