@@ -1,0 +1,17 @@
+#loginBoxBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#loginBox {
+    width: 20%;          /* Width of the square */
+    height: 40%;         /* Height of the square */
+    background-color: #3498db; /* Background color */
+    border: 2px solid black; /* Border color and thickness */
+    border-radius: 5px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
