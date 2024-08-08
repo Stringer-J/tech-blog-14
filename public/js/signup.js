@@ -3,18 +3,27 @@ const passRes = document.getElementById("textInput2");
 const signupButton = document.getElementById("signSubmit");
 
 function collect() {
-    const signupArray = [];
 
     const eValue = emailRes.value;
     const pValue = passRes.value;
 
     if (eValue.trim() !== "" && pValue.trim() !== "") {
-        signupArray.push({user_name: eValue, pass: pValue});
-
-        emailRes.value = "";
-        passRes.value = "";
-
-        console.log(signupArray);
+        fetch('/api/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ user_name: eValue, pass: pValue}),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            emailRes.value = "";
+            passRes.value = "";
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
     } else {
         alert("Fill out all fields");
     }
