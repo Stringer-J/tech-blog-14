@@ -17,9 +17,17 @@ function collect() {
         })
         .then(response => response.json())
         .then(data => {
-            console.log('Success:', data);
-            emailRes.value = "";
-            passRes.value = "";
+            if (data.message === 'User created') {
+                console.log('Success:', data);
+                emailRes.value = "";
+                passRes.value = "";
+                alert('Sign Up Successful');
+                setTimeout(() => {
+                    window.location.href = '/login';
+                }, 100);
+            } else {
+                console.error('Signup failed:', data.message);
+            }
         })
         .catch((error) => {
             console.error('Error:', error);
