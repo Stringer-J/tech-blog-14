@@ -34,6 +34,7 @@ router.post('/signup', async (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
+    console.log('Session before login:', req.session);
     try {
         const { user_name, pass } = req.body;
         if (!user_name || !pass) {
@@ -59,9 +60,11 @@ router.post('/login', async (req, res) => {
         console.log('Password match result:', isMatch);
 
         if (isMatch) {
-            res.json({ success: true, message: 'Login Successful'});
+            req.session.user = { id: user.id, user_name: user.user_name };
+            console.log('Session user set:', req.session.user);
+            return res.json({ success: true, message: 'Login Successful'});
         } else {
-            res.status(401).json({ success: false, message: 'Invalid email or password'});
+            return res.status(401).json({ success: false, message: 'Invalid email or password'});
         }
     } catch (err) {
         console.error(err);

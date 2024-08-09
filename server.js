@@ -18,14 +18,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(require('./controllers/'));
-
 app.use(session({
     secret: 'plok',
     resave: false,
     saveUninitialized: true,
     cookie: { secure: false}
 }));
+
+app.use(require('./controllers/'));
 
 function isLoggedIn (req, res, next) {
     if (req.session.user) {
