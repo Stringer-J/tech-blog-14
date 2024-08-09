@@ -7,7 +7,7 @@ html {
 body {
     margin: 0;
     padding: 0;
-    background-color: rgb(211, 211, 189);
+    background-color: rgb(145, 185, 220);
     min-height: 100vh;
 }
 
@@ -44,15 +44,15 @@ header {
 }
 
 .links li a {
-    color: rgb(211, 211, 189);
-}
-
-.links li a:hover {
     color: aliceblue;
 }
 
+.links li a:hover {
+    color: rgb(145, 185, 220);
+}
+
 .tech-blog-logo {
-    background-color: rgb(211, 211, 189);
+    background-color: aliceblue;
     width: 25%;
     height: 40%;
     position: relative;
@@ -60,7 +60,7 @@ header {
     left: 5%;
     border: 1px solid black;
     border-radius: 10px;
-    box-shadow: 6px 6px 2px rgb(166, 166, 138);
+    box-shadow: 6px 6px 2px rgb(145, 185, 220);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -94,7 +94,8 @@ header {
     width: 90%;
     height: 10%;
     background-color: rgba(0, 0, 0, 0.82);
-    color: rgb(211, 211, 189);
+    color: aliceblue;
+    box-shadow: 5px 0px 10px rgba(0, 0, 0, 0.3);
 }
 
 .blog-post-header h3 {
@@ -114,6 +115,8 @@ header {
     border: 2px solid black;
     border-radius: 0px 0px 5px 5px;
     width: 90%;
+    background-color: aliceblue;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
 }
 
 .blog-post p {
