@@ -25,6 +25,11 @@ app.use(session({
     cookie: { secure: false}
 }));
 
+app.use((req, res, next) => {
+    res.locals.isAuthenticated =req.session.user ? true : false;
+    next();
+});
+
 app.use(require('./controllers/'));
 
 function isLoggedIn (req, res, next) {
