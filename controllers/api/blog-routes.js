@@ -40,17 +40,23 @@ router.post('/login', async (req, res) => {
             return res.status(400).json({ success: false, message: 'Email and Password required'});
         }
 
+        console.log('Request Body:', req.body);
+
         const user = await User.findOne({ 
             where: { 
-                user_name: user_name 
+                user_name: user_name
             }
         });
+
+        console.log('Plain pass:', pass);
+        console.log('User pass:', user.pass);
 
         if (!user) {
             return res.status(401).json({ success: false, message: 'Invalid email or password'});
         }
 
         const isMatch = await bcrypt.compare(pass, user.pass);
+        console.log('Password match result:', isMatch);
 
         if (isMatch) {
             res.json({ success: true, message: 'Login Successful'});

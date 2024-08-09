@@ -20,7 +20,7 @@ function login() {
         })
         .then(response => response.json())
         .then(data => {
-            if (data.message === 'Login successful') {
+            if (data.message === 'Login Successful') {
                 console.log('Success:', data);
                 emailRes.value = "";
                 passRes.value = "";
