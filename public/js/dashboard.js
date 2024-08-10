@@ -6,50 +6,88 @@ document.addEventListener('DOMContentLoaded', () => {
     const contentInput = document.getElementById('content');
     const newSubmit = document.getElementById('newSubmit');
 
-    newButton.addEventListener('click', () => {
-        const isHidden = formBox.classList.contains('hidden');
-        formBox.classList.toggle('hidden', !isHidden);
-        overlay.classList.toggle('hidden', !isHidden);
+    let userName = '';
+
+    function handleSubmit() {
+            console.log('handle submit called');
+
+            const tValue = titleInput.value;
+            const cValue = contentInput.value;
+
+            console.log('Submitting with userName:', userName);
+    
+            if (tValue.trim() !== "" && cValue.trim() !== "") {
+                fetch('/api/postBlog', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        title: tValue,
+                        posted: userName,
+                        content: cValue
+                    }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message === 'Blog created') {
+                        console.log('Success', data);
+                        alert('Blog Created');
+                        setTimeout(() => {
+                            titleInput.value = '';
+                            contentInput.value = '';
+                            formBox.classList.add('hidden');
+                            overlay.classList.add('hidden');
+                        }, 100);
+                    } else {
+                        console.error('Blog Creation failed:', data.message);
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                })
+            } else {
+                alert('Please fill out all fields');
+            }
+    }
+
+    function fetchUser() {
+        return fetch('/api/getUser')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Response failed:' + response.status);
+            }           
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+            userName = data.user_name;
+            console.log('this worked');
+        })
+        .catch(error => {
+            console.error('Error getting user:', error);
+        });
+    }
+
+    fetchUser().then(() => {
+        newButton.addEventListener('click', () => {
+            const isHidden = formBox.classList.contains('hidden');
+            formBox.classList.toggle('hidden', !isHidden);
+            overlay.classList.toggle('hidden', !isHidden);
+        });
+    
+        overlay.addEventListener('click', () => {
+            formBox.classList.add('hidden');
+            overlay.classList.add('hidden');
+        });
+    
+        newSubmit.addEventListener('click', () => {
+            console.log('Submit button clicked');
+            if (userName) {
+                handleSubmit();
+            } else {
+                console.error('User not found');
+            }
+        });
     });
-
-    overlay.addEventListener('click', () => {
-        formBox.classList.add('hidden');
-        overlay.classList.add('hidden');
-    });
-
-    newSubmit.addEventListener('click', () => {
-        const tValue = titleInput.value;
-        const cValue = contentInput.value;
-        const user_name = sessionStorage.getItem('user_name');
-
-        if (tValue.trim() !== "" && cValue.trim() !== "") {
-            fetch('/api/blog', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    title: tValue,
-                    posted: user_name,
-                    content: cValue
-                }),
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.message === 'Blog created') {
-                    console.log('Success', data);
-                    alert('Blog Created');
-                    setTimeout(() => {
-
-                    }, 100);
-                } else {
-                    console.error('Blog Creation failed:', data.message);
-                }
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            })
-        }
-    })
-
 });

@@ -82,4 +82,29 @@ router.get('/logout', (req, res) => {
     });
 });
 
+router.get('/getUser', (req, res) => {
+    console.log('getUser route worked');
+    const userName = req.session.user.user_name;
+    console.log(userName);
+    res.json({ user_name: userName });
+});
+
+router.post('/postBlog', async (req, res) => {
+    try {
+        const { title, posted, content } = req.body;
+
+        console.log(req.body);
+
+        if (!title || !posted || !content) {
+            return res.status(400).json({ message: 'All fields required'});
+        }
+
+        const blog = await Blog.create({ title, posted, content });
+        res.status(201).json({ message: 'Blog Created', blog });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Error creating blog post', err});
+    }
+});
+
 module.exports = router;
