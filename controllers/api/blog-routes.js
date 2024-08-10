@@ -7,7 +7,7 @@ router.post('/signup', async (req, res) => {
     try {
         const { user_name, pass } = req.body;
 
-        console.log('Request Body:', req.body);
+        // console.log('Request Body:', req.body);
 
         if (!user_name || !pass) {
             return res.status(400).json({ message: 'Email and password required'});
@@ -34,14 +34,14 @@ router.post('/signup', async (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
-    console.log('Session before login:', req.session);
+    // console.log('Session before login:', req.session);
     try {
         const { user_name, pass } = req.body;
         if (!user_name || !pass) {
             return res.status(400).json({ success: false, message: 'Email and Password required'});
         }
 
-        console.log('Request Body:', req.body);
+        // console.log('Request Body:', req.body);
 
         const user = await User.findOne({ 
             where: { 
@@ -49,19 +49,19 @@ router.post('/login', async (req, res) => {
             }
         });
 
-        console.log('Plain pass:', pass);
-        console.log('User pass:', user.pass);
+        // console.log('Plain pass:', pass);
+        // console.log('User pass:', user.pass);
 
         if (!user) {
             return res.status(401).json({ success: false, message: 'Invalid email or password'});
         }
 
         const isMatch = await bcrypt.compare(pass, user.pass);
-        console.log('Password match result:', isMatch);
+        // console.log('Password match result:', isMatch);
 
         if (isMatch) {
             req.session.user = { id: user.id, user_name: user.user_name };
-            console.log('Session user set:', req.session.user);
+            // console.log('Session user set:', req.session.user);
             return res.json({ success: true, message: 'Login Successful'});
         } else {
             return res.status(401).json({ success: false, message: 'Invalid email or password'});
