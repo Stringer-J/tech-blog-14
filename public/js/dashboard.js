@@ -30,7 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
                 .then(response => response.json())
                 .then(data => {
-                    if (data.message === 'Blog created') {
+                    console.log('Response:', data);
+                    if (data.message === 'Blog Created') {
                         console.log('Success', data);
                         alert('Blog Created');
                         setTimeout(() => {
