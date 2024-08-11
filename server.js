@@ -2,7 +2,7 @@ const path = require('path');
 const express = require('express');
 const exphbs = require('express-handlebars');
 const session = require('express-session');
-const blogData = require('./seeds/blog-seeds.json');
+const Blog = require('./models/Blog');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -40,15 +40,29 @@ function isLoggedIn (req, res, next) {
 }
 
 app.get('/', async (req, res) => {
-    res.render('home', {
-        blogs: blogData
-    });
+    try {
+        const blogs = await Blog.findAll();
+        const plainBlogs = blogs.map(blog => blog.get({ plain: true }));
+        res.render('home', {
+            blogs: plainBlogs
+        });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server error');
+    }
 });
 
-app.get('/dashboard', isLoggedIn, (req, res) => {
-    res.render('dashboard', {
-        blogs: blogData
-    });
+app.get('/dashboard', isLoggedIn, async (req, res) => {
+    try {
+        const blogs = await Blog.findAll();
+        console.log(blogs);
+        res.render('home', {
+            blogs: blogs
+        });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server error');
+    }
 });
 
 sequelize.sync({ force: false }).then(() => {
