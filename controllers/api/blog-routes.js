@@ -91,15 +91,38 @@ router.get('/getUser', (req, res) => {
 
 router.post('/postBlog', async (req, res) => {
     try {
-        const { title, posted, content } = req.body;
+        const { title, content } = req.body;
 
         console.log(req.body);
 
-        if (!title || !posted || !content) {
+        if (!title || !content) {
             return res.status(400).json({ message: 'All fields required'});
         }
 
-        const blog = await Blog.create({ title, posted, content });
+        const user_name = req.session.user.user_name;
+
+        console.log('Selected User Name:', user_name);
+
+        const user = await User.findOne({
+            where: { user_name: user_name}
+        });
+
+        console.log('Selected User:', user);
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        const userId = user.id;
+
+        console.log('Selected User ID:', userId);
+
+        const blog = await Blog.create({ 
+            title, 
+            posted: user_name, 
+            content,
+            user_id: userId,
+        });
         res.status(201).json({ message: 'Blog Created', blog });
     } catch (err) {
         console.error(err);

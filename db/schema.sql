@@ -13,5 +13,6 @@ CREATE TABLE blog (
     id SERIAL PRIMARY KEY,
     title VARCHAR(300) NOT NULL,
     posted VARCHAR(300) NOT NULL,
-    content VARCHAR(300) NOT NULL
+    content VARCHAR(300) NOT NULL,
+    user_id INTEGER NOT NULL
 );

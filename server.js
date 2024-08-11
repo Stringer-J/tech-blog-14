@@ -3,6 +3,7 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const session = require('express-session');
 const Blog = require('./models/Blog');
+const User = require('./models/User');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -54,10 +55,23 @@ app.get('/', async (req, res) => {
 
 app.get('/dashboard', isLoggedIn, async (req, res) => {
     try {
-        const blogs = await Blog.findAll();
-        console.log(blogs);
-        res.render('home', {
-            blogs: blogs
+        const user_name = req.session.user.user_name;
+        const user = await User.findOne({
+            where: { user_name: user_name }
+        });
+
+        if (!user) {
+            return res.status(404).send('User not found');
+        }
+
+        const user_id = user.id;
+
+        const blogs = await Blog.findAll({
+            where: { user_id: user_id },
+        });
+        const plainBlogs = blogs.map(blog => blog.get({ plain: true }));
+        res.render('dashboard', {
+            blogs: plainBlogs
         });
     } catch (err) {
         console.error(err);
