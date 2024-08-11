@@ -46,7 +46,9 @@ app.get('/', async (req, res) => {
 });
 
 app.get('/dashboard', isLoggedIn, (req, res) => {
-    res.render('dashboard');
+    res.render('dashboard', {
+        blogs: blogData
+    });
 });
 
 sequelize.sync({ force: false }).then(() => {

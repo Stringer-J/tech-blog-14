@@ -11,7 +11,19 @@
             <textarea id="content" name="content" required></textarea><br>
             <button id="newSubmit">Submit</button>
         </form>
-    </div>
-</div>
+        </div>
+        </div>
+            <div class="blog-container">
+            {{#each blogs}}
+                <div class="blog-post-header">
+                    <h3>{{title}}</h3>
+                    <p>{{posted}}</p>
+                </div>
+                <div class="blog-post">
+                    <p>{{content}}</p>
+                </div>
+            {{/each}}
+        </div>
+
 
 <script src="/js/dashboard.js"></script>

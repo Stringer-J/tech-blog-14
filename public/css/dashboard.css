@@ -1,12 +1,15 @@
 #dashBox {
     display: flex;
     justify-content: center;
+    width: 100%;
+    height: 10%;
 }
 
 #newBlog {
     height: 50px;
     width: 90px;
     margin: 10px;
+    margin-bottom: 90px;
     border-radius: 10px;
     background-color: aliceblue;
     position: absolute;
