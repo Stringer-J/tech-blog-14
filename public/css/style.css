@@ -130,16 +130,6 @@ header {
     cursor: pointer;
 }
 
-.updateButton {
-    border-radius: 10px;
-    cursor: pointer;
-}
-
-.deleteButton {
-    border-radius: 10px;
-    cursor: pointer;
-}
-
 #buttonBox {
     margin-right: 2%;
 }

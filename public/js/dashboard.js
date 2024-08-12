@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const contentInput = document.getElementById('content');
     const newSubmit = document.getElementById('newSubmit');
     const updateButton = document.querySelectorAll('.updateButton');
+    const formBox2 = document.getElementById('formBox2');
+    const overlay2 = document.getElementById('overlay2');
     const titleInput2 = document.getElementById('title2');
     const contentInput2 = document.getElementById('content2');
     const newSubmit2 = document.getElementById('newSubmit2');
@@ -121,6 +123,15 @@ document.addEventListener('DOMContentLoaded', () => {
             formBox.classList.toggle('hidden', !isHidden);
             overlay.classList.toggle('hidden', !isHidden);
         });
+
+        updateButton.forEach(button => {
+            button.addEventListener('click', () => {
+                // alert('Update Button Clicked');
+                const isHidden = formBox2.classList.contains('hidden');
+                formBox2.classList.toggle('hidden', !isHidden);
+                overlay2.classList.toggle('hidden', !isHidden);
+            });
+        });
     
         overlay.addEventListener('click', () => {
             formBox.classList.add('hidden');
@@ -139,15 +150,6 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 console.error('User not found');
             }
-        });
-
-        updateButton.forEach(button => {
-            button.addEventListener('click', () => {
-                // alert('Update Button Clicked');
-                const isHidden = formBox2.classList.contains('hidden');
-                formBox2.classList.toggle('hidden', !isHidden);
-                overlay2.classList.toggle('hidden', !isHidden);
-            });
         });
 
         // newSubmit2.addEventListener('click', () => {
