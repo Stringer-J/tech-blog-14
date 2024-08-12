@@ -1,3 +1,5 @@
+const { response } = require("express");
+
 document.addEventListener('DOMContentLoaded', () => {
     const newButton = document.getElementById('newBlog');
     const formBox = document.getElementById('formBox');
@@ -54,6 +56,47 @@ document.addEventListener('DOMContentLoaded', () => {
             }
     }
 
+    function handleUpdate() {
+            const tValue = titleInput.value;
+            const cValue = contentInput.value;
+
+            if(tValue.trim() !== '' && cValue.trim() !== '') {
+                fetch('/api/updateBlog', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        title: tValue,
+                        posted: userName,
+                        content: cValue
+                    }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                console.log('Response:', data);
+                if (data.message === 'Blog Updated') {
+                    console.log('Success', data);
+                    alert('Blog Updated');
+                    setTimeout(() => {
+                        titleInput.value = '';
+                        contentInput.value = '';
+                        formBox.classList.add('hidden');
+                        overlay.classList.add('hidden');
+                    }, 100);
+                } else {
+                    console.error('Blog Creation failed:', data.message);
+                }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                })
+            } else {
+                alert('Please fill out all fields');
+            }
+    }
+    
+
     function fetchUser() {
         return fetch('/api/getUser')
         .then(response => {
@@ -95,7 +138,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         updateButton.forEach(button => {
             button.addEventListener('click', () => {
-                alert('Update Button Clicked');
+                // alert('Update Button Clicked');
+                const isHidden = formBox.classList.contains('hidden');
+                formBox.classList.toggle('hidden', !isHidden);
+                overlay.classList.toggle('hidden', !isHidden);
             });
         });
 

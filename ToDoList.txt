@@ -98,6 +98,8 @@ Need to be able to comment on posts
 Need to be able to update blog posts
 Need to be able to delete blog posts
     = Added comment button to home, added update and delete buttons to dashboard
+    = Update and Delete buttons show alert when clicked, need to write specific code now
+    = 
 
 Need to add date to blog posts
 Need to have a timer log you out after inactivity
