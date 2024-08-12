@@ -94,10 +94,10 @@ SETUP FOR '.env'
 
 
 
-
+Need to be able to comment on posts
 Need to be able to update blog posts
 Need to be able to delete blog posts
-    = I want to see an Update and Delete button when I hover over blog posts
-    
+    = Added comment button to home, added update and delete buttons to dashboard
+
 Need to add date to blog posts
 Need to have a timer log you out after inactivity

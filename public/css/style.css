@@ -125,6 +125,11 @@ header {
     margin-right: 2%;
 }
 
+#commentButton {
+    border-radius: 10px;
+    cursor: pointer;
+}
+
 #updateButton {
     border-radius: 10px;
     cursor: pointer;
