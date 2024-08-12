@@ -91,3 +91,13 @@ SETUP FOR '.env'
     DB_USER='postgres'
     DB_PASSWORD=''  (whatever your password is)
 
+
+
+
+
+Need to be able to update blog posts
+Need to be able to delete blog posts
+    = I want to see an Update and Delete button when I hover over blog posts
+    
+Need to add date to blog posts
+Need to have a timer log you out after inactivity

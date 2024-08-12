@@ -83,9 +83,9 @@ router.get('/logout', (req, res) => {
 });
 
 router.get('/getUser', (req, res) => {
-    console.log('getUser route worked');
+    // console.log('getUser route worked');
     const userName = req.session.user.user_name;
-    console.log(userName);
+    // console.log(userName);
     res.json({ user_name: userName });
 });
 
@@ -93,7 +93,7 @@ router.post('/postBlog', async (req, res) => {
     try {
         const { title, content } = req.body;
 
-        console.log(req.body);
+        // console.log(req.body);
 
         if (!title || !content) {
             return res.status(400).json({ message: 'All fields required'});
@@ -101,13 +101,13 @@ router.post('/postBlog', async (req, res) => {
 
         const user_name = req.session.user.user_name;
 
-        console.log('Selected User Name:', user_name);
+        // console.log('Selected User Name:', user_name);
 
         const user = await User.findOne({
             where: { user_name: user_name}
         });
 
-        console.log('Selected User:', user);
+        // console.log('Selected User:', user);
 
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
@@ -115,7 +115,7 @@ router.post('/postBlog', async (req, res) => {
 
         const userId = user.id;
 
-        console.log('Selected User ID:', userId);
+        // console.log('Selected User ID:', userId);
 
         const blog = await Blog.create({ 
             title, 

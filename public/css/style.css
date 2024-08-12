@@ -109,9 +109,9 @@ header {
 .blog-post {
     flex: 1;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    flex-direction: column;
+    /* flex-direction: column; */
     margin-bottom: 10px;
     border: 2px solid black;
     border-radius: 0px 0px 5px 5px;
@@ -124,3 +124,17 @@ header {
     margin-left: 2%;
     margin-right: 2%;
 }
+
+#updateButton {
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#deleteButton {
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#buttonBox {
+    margin-right: 2%;
+  }
