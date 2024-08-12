@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const titleInput = document.getElementById('title');
     const contentInput = document.getElementById('content');
     const newSubmit = document.getElementById('newSubmit');
+    const updateButton = document.querySelectorAll('.updateButton');
+    const deleteButton = document.querySelectorAll('.deleteButton');
 
     let userName = '';
 
@@ -83,12 +85,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     
         newSubmit.addEventListener('click', () => {
-            console.log('Submit button clicked');
+            // console.log('Submit button clicked');
             if (userName) {
                 handleSubmit();
             } else {
                 console.error('User not found');
             }
+        });
+
+        updateButton.forEach(button => {
+            button.addEventListener('click', () => {
+                alert('Update Button Clicked');
+            });
+        });
+
+        deleteButton.forEach(button => {
+            button.addEventListener('click', () => {
+                confirm('Delete Post?');
+            });
         });
     });
 });

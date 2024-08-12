@@ -125,21 +125,21 @@ header {
     margin-right: 2%;
 }
 
-#commentButton {
+.commentButton {
     border-radius: 10px;
     cursor: pointer;
 }
 
-#updateButton {
+.updateButton {
     border-radius: 10px;
     cursor: pointer;
 }
 
-#deleteButton {
+.deleteButton {
     border-radius: 10px;
     cursor: pointer;
 }
 
 #buttonBox {
     margin-right: 2%;
-  }
+}
