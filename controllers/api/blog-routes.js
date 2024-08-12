@@ -118,8 +118,8 @@ router.post('/postBlog', async (req, res) => {
         // console.log('Selected User ID:', userId);
 
         const blog = await Blog.create({ 
-            title, 
-            posted: user_name, 
+            title,
+            posted: user_name,
             content,
             user_id: userId,
         });
@@ -127,6 +127,49 @@ router.post('/postBlog', async (req, res) => {
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Error creating blog post', err});
+    }
+});
+
+router.post('/updateBlog', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { title, content } = req.body;
+
+        console.log('The Body of the Input:', req.body);
+
+        if (!title || !content) {
+            return res.status(400).json({ message: 'All fields required'});
+        }
+
+        const user_name = req.session.user.user_name;
+
+        // console.log('Selected User Name:', user_name);
+
+        const user = await User.findOne({
+            where: { user_name: user_name}
+        });
+
+        // console.log('Selected User:', user);
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        const userId = user.id;
+
+        // console.log('Selected User ID:', userId);
+
+        const blog = await Blog.findOne({ 
+            where: { id: id, user_id: userId}
+        });
+
+        if (!blog) {
+            return res.status(404).json({ message: 'Blog not found'});
+        }
+        res.status(201).json({ message: 'Blog Updated', blog });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Error updating blog post', err});
     }
 });
 

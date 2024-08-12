@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="/css/dashboard.css">
 
 <div id="overlay" class="hidden"></div>
+<div id="overlay2" class="hidden"></div>
 <div id="dashBox">
     <button id="newBlog"><b>NEW</b></button>
     <div id="formBox" class="hidden">
@@ -11,26 +12,35 @@
             <textarea id="content" name="content" required></textarea><br>
             <button id="newSubmit">Submit</button>
         </form>
-        </div>
-        </div>
-            <div class="blog-container">
-            {{#each blogs}}
-                <div class="blog-post-header">
-                    <h3>{{title}}</h3>
-                    <p>{{posted}}</p>
-                </div>
-                <div class="blog-post">
-                    <p>{{content}}</p>
-                    <div id="buttonBox">
-                        <button class="updateButton">Update</button>
-                        <button class="deleteButton">Delete</button>
+    </div>
+                        <div id="formBox2" class="hidden">
+                    <form>
+                        <label for="title">Title</label>
+                        <input type="text" id="title2" name="title" required>   
+                        <label for="content">Content</label>
+                        <textarea id="content" name="content2" required></textarea><br>
+                        <button id="newSubmit2">Submit</button>
+                    </form>
                     </div>
-                </div>
-                <div class="blog-comment">
-                    {{!-- comments go here --}}
-                </div>
-            {{/each}}
+</div>
+<div class="blog-container">
+    {{#each blogs}}
+        <div class="blog-post-header">
+            <h3>{{title}}</h3>
+            <p>{{posted}}</p>
         </div>
+        <div class="blog-post">
+            <p>{{content}}</p>
+            <div id="buttonBox">
+                <button class="updateButton" data-id="{{id}}">Update</button>
+                <button class="deleteButton" data-id="{{id}}">Delete</button>
+            </div>
+        </div>
+        <div class="blog-comment">
+            {{!-- comments go here --}}
+        </div>
+    {{/each}}
+</div>
 
 
 <script src="/js/dashboard.js"></script>
