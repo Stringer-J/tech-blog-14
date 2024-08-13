@@ -130,7 +130,8 @@ router.post('/postBlog', async (req, res) => {
     }
 });
 
-router.post('/updateBlog', async (req, res) => {
+router.post('/updateBlog/:id', async (req, res) => {
+    console.log('THE CODE IS FINDING THE ROUTE AT LEAST / updateBlog/:id');
     try {
         const { id } = req.params;
         const { title, content } = req.body;
@@ -166,6 +167,11 @@ router.post('/updateBlog', async (req, res) => {
         if (!blog) {
             return res.status(404).json({ message: 'Blog not found'});
         }
+
+        blog.title = title;
+        blog.content = content;
+        await blog.save();
+
         res.status(201).json({ message: 'Blog Updated', blog });
     } catch (err) {
         console.error(err);

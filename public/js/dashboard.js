@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const deleteButton = document.querySelectorAll('.deleteButton');
 
     let userName = '';
+    let currentBlog = null;
 
     function handleSubmit() {
             console.log('handle submit called');
@@ -60,11 +61,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function handleUpdate() {
+
             const uTitle = titleInput2.value;
             const uContent = contentInput2.value;
 
             if(uTitle.trim() !== '' && uContent.trim() !== '') {
-                fetch('/api/updateBlog', {
+                if(currentBlog === null) {
+                    console.error('No blog ID');
+                    alert('No Blog ID');
+                    return;
+                }
+
+                fetch(`/api/updateBlog/${currentBlog}`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -125,8 +133,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         updateButton.forEach(button => {
-            button.addEventListener('click', () => {
+            button.addEventListener('click', function() {
                 // alert('Update Button Clicked');
+                const blogPost = this.closest('.blog-post');
+                const content = blogPost.querySelector('p').textContent;
+                const blogId = this.getAttribute('data-id');
+
+                currentBlog = this.getAttribute('data-id');
+
+                console.log('Blog ID:', blogId);
+                console.log('Blog Content:', content);
+
                 const isHidden = formBox2.classList.contains('hidden');
                 formBox2.classList.toggle('hidden', !isHidden);
                 overlay2.classList.toggle('hidden', !isHidden);
@@ -152,13 +169,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // newSubmit2.addEventListener('click', () => {
-        //     if (blog) {
-        //         handleUpdate();
-        //     } else {
-        //         console.error('Blog not found');
-        //     }
-        // });
+        newSubmit2.addEventListener('click', (event) => {
+            event.preventDefault();
+            if (currentBlog) {
+                handleUpdate();
+            } else {
+                console.error('Blog not found');
+            }
+        });
 
         deleteButton.forEach(button => {
             button.addEventListener('click', () => {
