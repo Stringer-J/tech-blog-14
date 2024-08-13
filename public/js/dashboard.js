@@ -107,6 +107,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
     }
     
+    function handleDelete() {
+
+    }
 
     function fetchUser() {
         return fetch('/api/getUser')
@@ -181,7 +184,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         deleteButton.forEach(button => {
             button.addEventListener('click', () => {
-                confirm('Delete Post?');
+                const clickConfirm = confirm('Delete Post?');
+                if(clickConfirm) {
+                    alert('Post Deleted');
+                    setTimeout(() => {
+                        handleDelete();
+                    }, 100);
+                } else {
+                    return;
+                }
             });
         });
     });
