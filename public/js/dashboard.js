@@ -89,10 +89,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     console.log('Success', data);
                     alert('Blog Updated');
                     setTimeout(() => {
-                        titleInput.value = '';
-                        contentInput.value = '';
-                        formBox.classList.add('hidden');
-                        overlay.classList.add('hidden');
+                        titleInput2.value = '';
+                        contentInput2.value = '';
+                        formBox2.classList.add('hidden');
+                        overlay2.classList.add('hidden');
+                        location.reload(true);
                     }, 100);
                 } else {
                     console.error('Blog Update failed:', data.message);
