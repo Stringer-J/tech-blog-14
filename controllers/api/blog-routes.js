@@ -179,4 +179,23 @@ router.post('/updateBlog/:id', async (req, res) => {
     }
 });
 
+router.delete('/deleteBlog/:id', async (req, res) => {
+    console.log('DELETE request received for ID:', req.params.id);
+    try {
+        const { id } = req.params;
+        const result = await Blog.destroy({
+            where: { id: id }
+        });
+
+        if (!result) {
+            return res.status(404).json({ message: 'Blog not found' });
+        }
+
+        res.status(200).json({ message: 'Blog Deleted'});
+    } catch (error) {
+        console.error('Could not Delete:', error);
+        res.status(500).json({ message: 'Error'});
+    }
+});
+
 module.exports = router;

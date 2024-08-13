@@ -108,7 +108,42 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     function handleDelete() {
+        if(currentBlog === null) {
+            console.error('No blog ID');
+            alert('No Blog ID');
+            return;
+        }
 
+        console.log('CURRENT FOR DELETE:', currentBlog);
+        console.log(`TEMPLATE LITERAL: ${currentBlog}`);
+
+        const url = `/api/deleteBlog/${currentBlog}`;
+        console.log('Request URL:', url);
+
+        fetch(url, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Response was not okay');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Deleted:', data);
+            if(data.message === 'Blog Deleted') {
+                console.log('Success', data);
+            } else {
+                console.error('Blog Deletion failed:', data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Problem with delete fetch:', error);
+            alert('Problem deleting blog');
+        });
     }
 
     function fetchUser() {
@@ -183,12 +218,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         deleteButton.forEach(button => {
-            button.addEventListener('click', () => {
+            button.addEventListener('click', function() {
+                const blogPost = this.closest('.blog-post');
+                const content = blogPost.querySelector('p').textContent;
+                const blogId = this.getAttribute('data-id');
+
+                console.log('Current Blog ID:', blogId);
+                console.log('Current Blog Content:', content);
+
+                currentBlog = this.getAttribute('data-id');
+
                 const clickConfirm = confirm('Delete Post?');
                 if(clickConfirm) {
                     alert('Post Deleted');
                     setTimeout(() => {
                         handleDelete();
+                        location.reload(true);
                     }, 100);
                 } else {
                     return;
