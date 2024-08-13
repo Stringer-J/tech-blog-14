@@ -27,7 +27,7 @@ app.use(session({
 }));
 
 app.use((req, res, next) => {
-    res.locals.isAuthenticated =req.session.user ? true : false;
+    res.locals.isAuthenticated = req.session.user ? true : false;
     next();
 });
 
@@ -44,8 +44,9 @@ app.get('/', async (req, res) => {
     try {
         const blogs = await Blog.findAll();
         const plainBlogs = blogs.map(blog => blog.get({ plain: true }));
+        
         res.render('home', {
-            blogs: plainBlogs
+            blogs: plainBlogs,
         });
     } catch (err) {
         console.error(err);
