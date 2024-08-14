@@ -4,6 +4,8 @@
     <div id="formBox3" class="hidden">
         <form>
             <label for="action3"><h2>COMMENT</h2></label><hr>  
+            <label for="commenter">Name</label>
+            <input type="text" id="commenter" name="commenter">
             <label for="comment">What do you want to say?</label>
             <textarea id="comment" name="comment" required></textarea><br>
             <button id="comSubmit">Submit</button>
@@ -19,9 +21,21 @@
                 <div class="blog-post">
                     <p>{{content}}</p>
                     <div id="buttonBox">
-                        <button class="commentButton">Comment</button>
+                        <button class="commentButton" data-id="{{id}}">Comment</button>
                     </div>
                 </div>
+                {{#if comments}}
+                <div class="blog-comment">
+                    <div class="blog-user">
+                        <p>USER NAME</p>
+                    </div>
+                    <div class="blog-comment-text">
+                        <p>COMMENT</p>
+                    </div>
+                </div>
+                {{else}}
+                {{!-- nothing --}}
+                {{/if}}
             {{/each}}
         </div>
         <div class="space"></div>
