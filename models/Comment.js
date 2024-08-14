@@ -12,6 +12,14 @@ Comment.init(
             primaryKey: true,
             autoIncrement: true,
         },
+        commenter: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        comment: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
         blog_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -19,10 +27,6 @@ Comment.init(
                 model: Blog,
                 key: 'id',
             },
-        },
-        comment: {
-            type: DataTypes.STRING,
-            allowNull: false,
         },
     },
     {
@@ -33,7 +37,7 @@ Comment.init(
     }
 );
 
-// Blog.hasMany(Comment, { foreignKey: 'blog_id'});
-// Comment.belongsTo(Blog, { foreignKey: 'blog_id'});
+Blog.hasMany(Comment, { foreignKey: 'blog_id'});
+Comment.belongsTo(Blog, { foreignKey: 'blog_id'});
 
-// module.exports = Comment;
+module.exports = Comment;

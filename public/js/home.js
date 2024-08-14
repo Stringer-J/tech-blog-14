@@ -6,8 +6,6 @@ const comSubmit = document.getElementById('comSubmit');
 
 commentButton.forEach(button => {
     button.addEventListener('click', function() {
-        // isLoggedInForComment();
-        // alert('button clicked my friend');
         const isHidden = formBox3.classList.contains('hidden');
         formBox3.classList.toggle('hidden', !isHidden);
         overlay3.classList.toggle('hidden', !isHidden);

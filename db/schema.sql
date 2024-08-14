@@ -19,6 +19,7 @@ CREATE TABLE blog (
 
 CREATE TABLE comment (
     id SERIAL PRIMARY KEY,
-    blog_id INTEGER NOT NULL,
-    comment VARCHAR(300) NOT NULL
+    commenter VARCHAR(300) NOT NULL,
+    comment VARCHAR(300) NOT NULL,
+    blog_id INTEGER NOT NULL
 );

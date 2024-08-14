@@ -28,6 +28,7 @@ app.use(session({
 
 app.use((req, res, next) => {
     res.locals.isAuthenticated = req.session.user ? true : false;
+    res.locals.user = req.session.user;
     next();
 });
 
