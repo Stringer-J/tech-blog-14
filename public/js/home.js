@@ -1,4 +1,3 @@
-document.addEventListener('DOMContentLoaded', () => {
 const commentButton = document.querySelectorAll('.commentButton');
 const formBox3 = document.getElementById('formBox3');
 const overlay3 = document.getElementById('overlay3');
@@ -26,7 +25,8 @@ function handleComment() {
         },
         body: JSON.stringify({
             commenter: c1,
-            comment: c2
+            comment: c2,
+            blog_id: `${currentBlog}`,
         }),
     })
     .then(response => response.json())
@@ -82,6 +82,4 @@ comSubmit.addEventListener('click', (event) => {
 overlay3.addEventListener('click', () => {
     formBox3.classList.add('hidden');
     overlay3.classList.add('hidden');
-});
-
 });

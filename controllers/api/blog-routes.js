@@ -2,6 +2,7 @@ const router = require('express').Router();
 const bcrypt = require('bcrypt');
 const User = require('../../models/User');
 const Blog = require('../../models/Blog');
+const Comment = require('../../models/Comment');
 
 router.post('/signup', async (req, res) => {
     try {
@@ -195,6 +196,24 @@ router.delete('/deleteBlog/:id', async (req, res) => {
     } catch (error) {
         console.error('Could not Delete:', error);
         res.status(500).json({ message: 'Error'});
+    }
+});
+
+router.post('/addComment/:id', async (req, res) => {
+    try{
+        const { commenter, comment, blog_id } = req.body;
+
+        console.log('The Body:', req.body);
+
+        if (!commenter || !comment) {
+            return res.status(400).json({ message: "All fields required"})
+        }
+
+        const addedComment = await Comment.create({ commenter, comment, blog_id});
+        res.status(201).json({ message: 'Comment Added', addedComment});
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Error adding Comment', err});
     }
 });
 
