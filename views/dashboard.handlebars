@@ -38,6 +38,20 @@
                 <button class="deleteButton" data-id="{{id}}">Delete</button>
             </div>
         </div>
+        {{#if comments.length}}
+        {{#each comments}}
+        <div class="blog-comment">
+            <div class="blog-user">
+                <p>{{commenter}}</p>
+            </div>
+            <div class="blog-comment-text">
+                <p>{{comment}}</p>
+            </div>
+        </div>
+        {{/each}}
+        {{else}}
+            {{!-- no comments --}}
+        {{/if}}
     {{/each}}
 </div>
 <div class="space"></div>

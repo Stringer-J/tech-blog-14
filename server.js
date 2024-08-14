@@ -84,9 +84,20 @@ app.get('/dashboard', isLoggedIn, async (req, res) => {
         const blogs = await Blog.findAll({
             where: { user_id: user_id },
         });
+        const comments = await Comment.findAll();
+
         const plainBlogs = blogs.map(blog => blog.get({ plain: true }));
+        const plainComments = comments.map(comment => comment.get({ plain: true}));
+
+        const blogsWithComments = plainBlogs.map(blog => {
+            return {
+                ...blog,
+                comments: plainComments.filter(comment => comment.blog_id === blog.id)
+            };
+        });
+
         res.render('dashboard', {
-            blogs: plainBlogs
+            blogs: blogsWithComments,
         });
     } catch (err) {
         console.error(err);
