@@ -4,6 +4,7 @@ const exphbs = require('express-handlebars');
 const session = require('express-session');
 const Blog = require('./models/Blog');
 const User = require('./models/User');
+const Comment = require('./models/Comment');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -44,10 +45,22 @@ function isLoggedIn (req, res, next) {
 app.get('/', async (req, res) => {
     try {
         const blogs = await Blog.findAll();
-        const plainBlogs = blogs.map(blog => blog.get({ plain: true }));
+        const comments = await Comment.findAll();
+
+        const plainBlogs = blogs.map(blog => blog.get({ plain: true}));
+        const plainComments = comments.map(comment => comment.get({ plain: true}));
+
+        const blogsWithComments = plainBlogs.map(blog => {
+            return {
+                ...blog,
+                comments: plainComments.filter(comment => comment.blog_id === blog.id)
+            };
+        });
+
+        console.log(JSON.stringify(blogsWithComments, null, 2));
         
         res.render('home', {
-            blogs: plainBlogs,
+            blogs: blogsWithComments,
         });
     } catch (err) {
         console.error(err);

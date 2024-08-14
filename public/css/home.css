@@ -57,7 +57,7 @@ label, input, textarea {
 }
 
 .blog-comment {
-    background-color: azure;
+    background-color: rgb(179, 188, 195);
     width: 88%;
     height: 25px;
     border: 2px solid black;

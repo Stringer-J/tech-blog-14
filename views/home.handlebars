@@ -24,17 +24,19 @@
                         <button class="commentButton" data-id="{{id}}">Comment</button>
                     </div>
                 </div>
-                {{#if comments}}
+                {{#if comments.length}}
+                {{#each comments}}
                 <div class="blog-comment">
                     <div class="blog-user">
-                        <p>USER NAME</p>
+                        <p>{{commenter}}</p>
                     </div>
                     <div class="blog-comment-text">
-                        <p>COMMENT</p>
+                        <p>{{comment}}</p>
                     </div>
                 </div>
+                {{/each}}
                 {{else}}
-                {{!-- nothing --}}
+                {{!-- no comments --}}
                 {{/if}}
             {{/each}}
         </div>
