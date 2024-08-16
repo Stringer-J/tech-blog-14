@@ -10,6 +10,12 @@ const moment = require('moment');
 
 const sequelize = require('./config/connection');
 
+require('./models/User');
+require('./models/Blog');
+require('./models/Comment');
+
+require('./models/index');
+
 const sessionStore = new SequelizeStore({
     db: sequelize
 });
