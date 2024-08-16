@@ -94,12 +94,22 @@ SETUP FOR '.env'
 
 
 
-Need to be able to comment on posts
+***DONE*** Need to be able to comment on posts
 ***DONE*** Need to be able to update blog posts
 ***DONE*** Need to be able to delete blog posts
     = Added comment button to home, added update and delete buttons to dashboard
     = Update and Delete buttons show alert when clicked, need to write specific code now
     = Update and Delete functionality works now, just need to figure out comments
+    = Comments work but not as a logged in user, which bothers me but I'm moving on
 
+Need to add actual user name instead of just have an email
 Need to add date to blog posts
 Need to have a timer log you out after inactivity
+
+
+1. added 'email' field to User
+2. added 'date' field to Blog
+3. added 'userRes' to signup.js (line 4)
+4. added 'uValue' to signup.js (line 8)
+5. added 'email: eValue' to signup.js (line 20)
+6. changed value of line 19 to 'uValue' in signup.js

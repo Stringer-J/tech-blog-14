@@ -20,6 +20,10 @@ User.init(
                 key: 'posted',
             },
         },
+        email: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
         pass: {
             type: DataTypes.STRING,
             allowNull: false,

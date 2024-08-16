@@ -6,17 +6,17 @@ const Comment = require('../../models/Comment');
 
 router.post('/signup', async (req, res) => {
     try {
-        const { user_name, pass } = req.body;
+        const { user_name, email, pass } = req.body;
 
         // console.log('Request Body:', req.body);
 
-        if (!user_name || !pass) {
-            return res.status(400).json({ message: 'Email and password required'});
+        if (!user_name || !email || !pass) {
+            return res.status(400).json({ message: 'All fields required'});
         }
 
         const existingUser = await User.findOne({ 
             where: {
-                user_name: user_name
+                email: email
             } 
         });
         if (existingUser) {
@@ -26,7 +26,7 @@ router.post('/signup', async (req, res) => {
         const saltRounds = 10;
         const hashedPassword = await bcrypt.hash(pass, saltRounds);
 
-        const user = await User.create({ user_name, pass: hashedPassword });
+        const user = await User.create({ user_name, email, pass: hashedPassword });
         res.status(201).json({ message: 'User created', user });
     } catch (err) {
         console.error(err);
@@ -37,8 +37,8 @@ router.post('/signup', async (req, res) => {
 router.post('/login', async (req, res) => {
     // console.log('Session before login:', req.session);
     try {
-        const { user_name, pass } = req.body;
-        if (!user_name || !pass) {
+        const { email, pass } = req.body;
+        if (!email || !pass) {
             return res.status(400).json({ success: false, message: 'Email and Password required'});
         }
 
@@ -46,7 +46,7 @@ router.post('/login', async (req, res) => {
 
         const user = await User.findOne({ 
             where: { 
-                user_name: user_name
+                email: email
             }
         });
 

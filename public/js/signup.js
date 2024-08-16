@@ -1,9 +1,11 @@
 const emailRes = document.getElementById("textInput");
 const passRes = document.getElementById("textInput2");
 const signupButton = document.getElementById("signSubmit");
+const userRes = document.getElementById("textInput3");
 
 function collect() {
 
+    const uValue = userRes.value;
     const eValue = emailRes.value;
     const pValue = passRes.value;
 
@@ -14,7 +16,8 @@ function collect() {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({ 
-                user_name: eValue, 
+                user_name: uValue,
+                email: eValue, 
                 pass: pValue}),
         })
         .then(response => response.json())
