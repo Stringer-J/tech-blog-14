@@ -2,15 +2,20 @@ const path = require('path');
 const express = require('express');
 const exphbs = require('express-handlebars');
 const session = require('express-session');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const Blog = require('./models/Blog');
 const User = require('./models/User');
 const Comment = require('./models/Comment');
 const moment = require('moment');
 
+const sequelize = require('./config/connection');
+
+const sessionStore = new SequelizeStore({
+    db: sequelize
+});
+
 const app = express();
 const PORT = process.env.PORT || 3001;
-
-const sequelize = require('./config/connection');
 
 const hbs = exphbs.create({});
 
@@ -22,11 +27,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
+    store: sessionStore,
     secret: 'plok',
     resave: false,
     saveUninitialized: true,
     cookie: { 
-        secure: false,
+        secure: process.env.NODE_ENV === 'production',
         maxAge: 1000 * 60 * 20
     }
 }));

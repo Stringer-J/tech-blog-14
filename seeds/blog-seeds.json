@@ -1,26 +1,7 @@
 [
     {
-        "id": 1,
         "title": "BLOGS FOR EVERYONE",
         "posted": "Posted by Josh on 7/14/2024",
         "content": "This is just a test blog to see if I can get it to render... let's hope."
-    },
-    {
-        "id": 2,
-        "title": "SPACE BLOGS",
-        "posted": "Posted by Josh on 7/28/2024",
-        "content": "This is actually a super cool way to post things."
-    },
-    {
-        "id": 3,
-        "title": "CHEESECAKE REVIEW",
-        "posted": "Posted by FoodCritic8 on 8/4/2024",
-        "content": "Blueberry cheesecake: 10 out of 10."
-    },
-    {
-        "id": 4,
-        "title": "I'M READY",
-        "posted": "Posted by Spongebob23 on 8/7/2024",
-        "content": "This time I'm going to pass my boating exam!"
     }
 ]
