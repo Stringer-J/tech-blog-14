@@ -5,6 +5,7 @@ const session = require('express-session');
 const Blog = require('./models/Blog');
 const User = require('./models/User');
 const Comment = require('./models/Comment');
+const moment = require('moment');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -24,7 +25,10 @@ app.use(session({
     secret: 'plok',
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false}
+    cookie: { 
+        secure: false,
+        maxAge: 1000 * 60 * 20
+    }
 }));
 
 app.use((req, res, next) => {
@@ -51,8 +55,10 @@ app.get('/', async (req, res) => {
         const plainComments = comments.map(comment => comment.get({ plain: true}));
 
         const blogsWithComments = plainBlogs.map(blog => {
+            const formattedDate = moment(blog.date).format('MM-DD-YY hh:mm');
             return {
                 ...blog,
+                date: formattedDate,
                 comments: plainComments.filter(comment => comment.blog_id === blog.id)
             };
         });
@@ -90,8 +96,10 @@ app.get('/dashboard', isLoggedIn, async (req, res) => {
         const plainComments = comments.map(comment => comment.get({ plain: true}));
 
         const blogsWithComments = plainBlogs.map(blog => {
+            const formattedDate = moment(blog.date).format('MM-DD-YY hh:mm');
             return {
                 ...blog,
+                date: formattedDate,
                 comments: plainComments.filter(comment => comment.blog_id === blog.id)
             };
         });

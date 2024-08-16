@@ -6,7 +6,7 @@
 
 #signupBox {
     width: 15%;          /* Width of the square */
-    height: 40%;         /* Height of the square */
+    height: 45%;         /* Height of the square */
     background-color: aliceblue; /* Background color */
     border: 2px solid black; /* Border color and thickness */
     border-radius: 5px;
@@ -39,5 +39,5 @@
 
   button {
     position: absolute;
-    bottom: 22%;
+    bottom: 18%;
   }

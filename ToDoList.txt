@@ -102,11 +102,11 @@ SETUP FOR '.env'
     = Update and Delete functionality works now, just need to figure out comments
     = Comments work but not as a logged in user, which bothers me but I'm moving on
 
-Need to add actual user name instead of just have an email
-Need to add date to blog posts
-Need to have a timer log you out after inactivity
+***DONE*** Need to add actual user name instead of just have an email
+***DONE*** Need to add date to blog posts
+***DONE*** Need to have a timer log you out after inactivity
 
-
+8/16 tracking
 1. added 'email' field to User
 2. added 'date' field to Blog
 3. added 'userRes' to signup.js (line 4)
