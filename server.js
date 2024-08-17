@@ -3,9 +3,9 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
-const Blog = require('./models/Blog');
-const User = require('./models/User');
-const Comment = require('./models/Comment');
+// const Blog = require('./models/Blog');
+// const User = require('./models/User');
+// const Comment = require('./models/Comment');
 const moment = require('moment');
 
 const sequelize = require('./config/connection');
