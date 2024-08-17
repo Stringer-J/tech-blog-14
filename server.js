@@ -121,6 +121,11 @@ app.get('/dashboard', isLoggedIn, async (req, res) => {
     }
 });
 
-sequelize.sync({ force: false }).then(() => {
-    app.listen(PORT, () => console.log('Now listening'));
-});
+    try {
+        sequelize.sync({ force: false }).then(() => {
+            app.listen(PORT, () => console.log('Now listening'));
+        })
+    } catch (err) {
+        console.error(err);
+    }
+
