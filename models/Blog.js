@@ -16,14 +16,14 @@ Blog.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        posted: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            references: {
-                model: User,
-                key: 'user_name',
-            },
-        },
+        // posted: {
+        //     type: DataTypes.STRING,
+        //     allowNull: false,
+        //     references: {
+        //         model: User,
+        //         key: 'user_name',
+        //     },
+        // },
         date: {
             type: DataTypes.DATE,
             allowNull: false,
@@ -35,6 +35,7 @@ Blog.init(
         },
         user_id: {
             type: DataTypes.INTEGER,
+            allowNull: false,
             references: {
                 model: User,
                 key: 'id',

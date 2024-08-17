@@ -1,4 +1,4 @@
-const dbConnect = require('../config/connection.js');
+const sequelize = require('../config/connection.js');
 const { User, Blog, Comment } = require('../models/index.js');
 
-await dbConnect.sync({ force: true });
+sequelize.sync({ force: true });

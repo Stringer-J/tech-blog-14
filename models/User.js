@@ -1,6 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
-const Blog = require('./Blog');
+// const Blog = require('./Blog');
 
 class User extends Model {}
 
@@ -15,10 +15,10 @@ User.init(
         user_name: {
             type: DataTypes.STRING,
             allowNull: false,
-            references: {
-                model: Blog,
-                key: 'posted',
-            },
+            // references: {
+            //     model: Blog,
+            //     key: 'posted',
+            // },
         },
         email: {
             type: DataTypes.STRING,
