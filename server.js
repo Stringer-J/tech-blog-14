@@ -38,6 +38,7 @@ app.use(session({
     }
 }));
 
+//lets me check if the user is actually logged in or not
 app.use((req, res, next) => {
     res.locals.isAuthenticated = req.session.user ? true : false;
     res.locals.user = req.session.user;
@@ -46,6 +47,7 @@ app.use((req, res, next) => {
 
 app.use(require('./controllers/'));
 
+//maybe double dipping with isAuthenticated from above, but I didn't want to remove it just in case
 function isLoggedIn (req, res, next) {
     if (req.session.user) {
         return next();
@@ -56,7 +58,7 @@ function isLoggedIn (req, res, next) {
 app.get('/', async (req, res) => {
     try {
         const blogs = await Blog.findAll({
-            include: [
+            include: [ //lets me find the user name to pass to handelbars
                 {
                     model: User,
                     as: 'author',
@@ -66,10 +68,13 @@ app.get('/', async (req, res) => {
         });
         const comments = await Comment.findAll();
 
+        //makes the blogs and comments plain
         const plainBlogs = blogs.map(blog => blog.get({ plain: true}));
         const plainComments = comments.map(comment => comment.get({ plain: true}));
 
+        //maps all the formatted blogs and comments
         const blogsWithComments = plainBlogs.map(blog => {
+            //formats the date with moment
             const formattedDate = moment(blog.date).format('MM-DD-YY hh:mm');
             return {
                 ...blog,

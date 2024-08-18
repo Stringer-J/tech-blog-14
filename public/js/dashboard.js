@@ -13,8 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const newSubmit2 = document.getElementById('newSubmit2');
     const deleteButton = document.querySelectorAll('.deleteButton');
 
-    let userName = '';
-    let currentBlog = null;
+    let userName = ''; //empty variable for the username we will find later
+    let currentBlog = null; //null variable for the blog that we will also find later
 
     function handleSubmit() {
             console.log('handle submit called');
@@ -146,6 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    //finds the current user
     function fetchUser() {
         return fetch('/api/getUser')
         .then(response => {
@@ -164,6 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    //after the user is found, allows use of these button functions
     fetchUser().then(() => {
         newButton.addEventListener('click', () => {
             const isHidden = formBox.classList.contains('hidden');
