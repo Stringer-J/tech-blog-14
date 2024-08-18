@@ -56,7 +56,15 @@ function isLoggedIn (req, res, next) {
 
 app.get('/', async (req, res) => {
     try {
-        const blogs = await Blog.findAll();
+        const blogs = await Blog.findAll({
+            include: [
+                {
+                    model: User,
+                    as: 'author',
+                    attributes: ['user_name']
+                }
+            ]
+        });
         const comments = await Comment.findAll();
 
         const plainBlogs = blogs.map(blog => blog.get({ plain: true}));
@@ -97,6 +105,13 @@ app.get('/dashboard', isLoggedIn, async (req, res) => {
 
         const blogs = await Blog.findAll({
             where: { user_id: user_id },
+            include: [
+                {
+                    model: User,
+                    as: 'author',
+                    attributes: ['user_name']
+                }
+            ]
         });
         const comments = await Comment.findAll();
 
